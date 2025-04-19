@@ -11,6 +11,35 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewData["Title"]</title>
     <link href="~/css/menu.css" rel="stylesheet" />
+    <style>
+        .property-features {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 5px;
+            background-color: #f8f9fa;
+            border-radius: 4px;
+            font-size: 0.95rem;
+        }
+
+        .feature span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .feature i {
+            width: 20px;
+            text-align: center;
+        }
+    </style>
 </head>
 <body>
     <header>

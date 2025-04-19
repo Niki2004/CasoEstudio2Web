@@ -5,20 +5,20 @@ namespace CasoEstudio2.Models
 {
     public class CasasModel
     {
+        [Required]
         public long IdCasa { get; set; }  
 
         [StringLength(30)]
-        public string DescripcionCasa { get; set; }  
+        public string? DescripcionCasa { get; set; }  
 
-        [Required]
-        [Column(TypeName = "decimal(10,2)")]
+        [NotMapped]
         public decimal PrecioCasa { get; set; }      
 
         [StringLength(30)]
-        public string UsuarioAlquiler { get; set; }
+        public string? UsuarioAlquiler { get; set; }
 
-        public string Fecha { get; set; }
+        public string? Fecha { get; set; }
 
-        public string Estado { get; set; }
+        public string? Estado { get; set; }
     }
 }

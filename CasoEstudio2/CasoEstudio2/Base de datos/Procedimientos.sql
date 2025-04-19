@@ -63,3 +63,39 @@ BEGIN
             ELSE 1
         END
 END
+
+
+---------- ObtenerCasasDisponibles ----------
+
+CREATE PROCEDURE ObtenerCasasDisponibles
+AS
+BEGIN
+    SELECT 
+        IdCasa,
+        DescripcionCasa,
+        PrecioCasa
+    FROM 
+        CasasSistema
+    WHERE 
+        Estado = 'Disponible'
+END 
+
+
+---------- ActualizarAlquilerCasa ----------
+
+CREATE PROCEDURE ActualizarAlquilerCasa
+    @IdCasa BIGINT,
+    @UsuarioAlquiler VARCHAR(30)
+AS
+BEGIN
+    SET NOCOUNT OFF; 
+    
+    UPDATE CasasSistema
+    SET 
+        UsuarioAlquiler = @UsuarioAlquiler,
+        FechaAlquiler = GETDATE(),
+        Estado = 'Reservada'
+    WHERE 
+        IdCasa = @IdCasa
+        AND Estado = 'Disponible' 
+END					
