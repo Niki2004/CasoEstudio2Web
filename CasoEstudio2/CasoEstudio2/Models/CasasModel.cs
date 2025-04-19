@@ -15,8 +15,10 @@ namespace CasoEstudio2.Models
         public decimal PrecioCasa { get; set; }      
 
         [StringLength(30)]
-        public string UsuarioAlquiler { get; set; }   
+        public string UsuarioAlquiler { get; set; }
 
-        public DateTime? FechaAlquiler { get; set; }  
+        public string Fecha { get; set; }
+
+        public string Estado { get; set; }
     }
 }

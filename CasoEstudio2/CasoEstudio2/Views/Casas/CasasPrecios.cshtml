@@ -1,0 +1,114 @@
+﻿@model List<CasasModel>
+
+@{
+    ViewData["Title"] = "Consulta de Casas - Casas Dispon";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="~/css/menu.css" rel="stylesheet" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">Casas Dispon</div>
+                <nav>
+                    <ul>
+                        <li onclick="window.location.href='/Casas/MostrarCasas'">Inicio</li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Consulta de Casas</h1>
+        <p>Encuentra la casa de tus sueños entre nuestra amplia selección de propiedades</p>
+    </section>
+
+    <section class="featured-properties">
+        <div class="container">
+            <h2 class="section-title">Casas Disponibles</h2>
+
+            @if (Model != null && Model.Any())
+            {
+                <div class="properties-grid" id="propiedadesContainer">
+                    @foreach (var casa in Model)
+                    {
+                        <div class="property-card" data-estado="@casa.Estado" data-precio="@casa.PrecioCasa">
+                            <div class="property-image">
+                                <div class="property-price">₡@casa.PrecioCasa.ToString("N2")</div>
+                            </div>
+                            <div class="property-details">
+                                <p class="property-location">@casa.DescripcionCasa</p>
+                                <div class="property-features">
+                                    <span class="feature">👤 @casa.UsuarioAlquiler</span>
+                                    <span class="feature">📅 @casa.Fecha</span>
+                                    <span class="feature" style="color: @(casa.Estado == "Disponible" ? "#28a745" : (casa.Estado == "Reservada" ? "#dc3545" : "#333"))">
+                                        @if (casa.Estado == "Disponible")
+                                        {
+                                            <span>✅ @casa.Estado</span>
+                                        }
+                                        else if (casa.Estado == "Reservada")
+                                        {
+                                            <span>🔒 @casa.Estado</span>
+                                        }
+                                        else
+                                        {
+                                            <span>ℹ️ @casa.Estado</span>
+                                        }
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div id="noResultados" class="no-results" style="display: none;">
+                    <p>No se encontraron propiedades que coincidan con los filtros seleccionados.</p>
+                </div>
+            }
+            else
+            {
+                <div class="no-results">
+                    <p>No se encontraron propiedades disponibles. Por favor, intenta con otros criterios de búsqueda.</p>
+                </div>
+            }
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <h2>¿Quieres vender tu propiedad?</h2>
+            <p>Nuestro equipo de expertos te ayudará a vender tu propiedad al mejor precio y en el menor tiempo posible.</p>
+            <a class="btn btn-accent">Contactar Ahora</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Sobre Nosotros</h3>
+                    <p>Casas Dispon es una empresa líder en el sector inmobiliario con más de 10 años de experiencia ayudando a nuestros clientes a encontrar el hogar perfecto.</p>
+                </div>
+
+                <div class="footer-section">
+                    <h3>Contacto</h3>
+                    <p>📞 +506 123 456 789</p>
+                    <p>✉️ info@casasdispon.com</p>
+                    <p>🏢 Calle Principal 123, Ciudad</p>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>&copy; 2025 Casas Dispon. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
